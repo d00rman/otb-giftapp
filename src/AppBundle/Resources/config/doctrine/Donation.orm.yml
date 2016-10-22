@@ -7,7 +7,7 @@ AppBundle\Entity\Donation:
             generator: { strategy: AUTO }
     fields:
         count:
-            type: int
+            type: integer
     manyToOne:
         user:
             targetEntity: User

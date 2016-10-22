@@ -17,7 +17,7 @@ AppBundle\Entity\WishList:
         announce_text:
             type: text
         year:
-            type: int
+            type: integer
     manyToOne:
         status:
             targetEntity: Status

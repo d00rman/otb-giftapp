@@ -9,11 +9,11 @@ AppBundle\Entity\GiftRequest:
         recipient_name:
             type: string
         recipient_age:
-            type: int
+            type: integer
         gift_name:
             type: string
         total_count:
-            type: int
+            type: integer
     manyToOne:
         wishlist:
             targetEntity: WishList

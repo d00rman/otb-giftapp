@@ -1,127 +1,302 @@
--- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               5.7.14 - MySQL Community Server (GPL)
--- Server OS:                    osx10.11
--- HeidiSQL Version:             9.3.0.4984
--- --------------------------------------------------------
+-- MySQL dump 10.15  Distrib 10.0.27-MariaDB, for debian-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: otb
+-- ------------------------------------------------------
+-- Server version	10.0.27-MariaDB-0+deb8u1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping structure for table otb.gift_requests
-CREATE TABLE IF NOT EXISTS `gift_requests` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `recipient_name` varchar(255) NOT NULL,
-  `recipient_age` int(2) NOT NULL,
-  `gift_name` varchar(255) NOT NULL,
-  `wishlist_id` int(10) unsigned DEFAULT NULL,
-  `status_id` int(10) unsigned DEFAULT NULL,
-  `request_type_id` int(10) unsigned DEFAULT NULL,
-  `total_count` int(10) NOT NULL,
-  KEY `Index 1` (`id`),
-  KEY `FK_gift_requests_wishlist` (`wishlist_id`),
-  KEY `FK_gift_requests_status` (`status_id`),
-  KEY `FK_gift_requests_request_type` (`request_type_id`),
-  CONSTRAINT `FK_gift_requests_request_type` FOREIGN KEY (`request_type_id`) REFERENCES `request_type` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `FK_gift_requests_status` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `FK_gift_requests_wishlist` FOREIGN KEY (`wishlist_id`) REFERENCES `wishlist` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+--
+-- Table structure for table `donations`
+--
 
--- Dumping data for table otb.gift_requests: ~0 rows (approximately)
-/*!40000 ALTER TABLE `gift_requests` DISABLE KEYS */;
-/*!40000 ALTER TABLE `gift_requests` ENABLE KEYS */;
+DROP TABLE IF EXISTS `donations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `donations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `gift_request_id` int(11) DEFAULT NULL,
+  `count` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_CDE98962A76ED395` (`user_id`),
+  KEY `IDX_CDE98962EF8F7F4E` (`gift_request_id`),
+  CONSTRAINT `FK_CDE98962A76ED395` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `FK_CDE98962EF8F7F4E` FOREIGN KEY (`gift_request_id`) REFERENCES `gift_request` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `donations`
+--
 
--- Dumping structure for table otb.institutions
-CREATE TABLE IF NOT EXISTS `institutions` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '0',
-  `address` varchar(255) NOT NULL DEFAULT '0',
-  `type_id` int(10) unsigned DEFAULT '0',
-  `region_id` int(10) unsigned DEFAULT '0',
-  KEY `Index 1` (`id`),
-  KEY `FK_institutions_regions` (`region_id`),
-  KEY `FK_institutions_institution_type` (`type_id`),
-  CONSTRAINT `FK_institutions_institution_type` FOREIGN KEY (`type_id`) REFERENCES `institution_type` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `FK_institutions_regions` FOREIGN KEY (`region_id`) REFERENCES `regions` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+LOCK TABLES `donations` WRITE;
+/*!40000 ALTER TABLE `donations` DISABLE KEYS */;
+/*!40000 ALTER TABLE `donations` ENABLE KEYS */;
+UNLOCK TABLES;
 
--- Dumping data for table otb.institutions: ~0 rows (approximately)
-/*!40000 ALTER TABLE `institutions` DISABLE KEYS */;
-/*!40000 ALTER TABLE `institutions` ENABLE KEYS */;
+--
+-- Table structure for table `gift_request`
+--
 
+DROP TABLE IF EXISTS `gift_request`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `gift_request` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `wishlist_id` int(11) DEFAULT NULL,
+  `status_id` int(11) DEFAULT NULL,
+  `request_type_id` int(11) DEFAULT NULL,
+  `recipient_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `recipient_age` int(11) NOT NULL,
+  `gift_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `total_count` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_57CDBC30FB8E54CD` (`wishlist_id`),
+  KEY `IDX_57CDBC306BF700BD` (`status_id`),
+  KEY `IDX_57CDBC30EF68FEC4` (`request_type_id`),
+  CONSTRAINT `FK_57CDBC306BF700BD` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`),
+  CONSTRAINT `FK_57CDBC30EF68FEC4` FOREIGN KEY (`request_type_id`) REFERENCES `request_type` (`id`),
+  CONSTRAINT `FK_57CDBC30FB8E54CD` FOREIGN KEY (`wishlist_id`) REFERENCES `wishlist` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- Dumping structure for table otb.institution_type
-CREATE TABLE IF NOT EXISTS `institution_type` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `type` varchar(255) DEFAULT NULL,
-  KEY `Index 1` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+--
+-- Dumping data for table `gift_request`
+--
 
--- Dumping data for table otb.institution_type: ~0 rows (approximately)
+LOCK TABLES `gift_request` WRITE;
+/*!40000 ALTER TABLE `gift_request` DISABLE KEYS */;
+/*!40000 ALTER TABLE `gift_request` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `institution_type`
+--
+
+DROP TABLE IF EXISTS `institution_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `institution_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `institution_type`
+--
+
+LOCK TABLES `institution_type` WRITE;
 /*!40000 ALTER TABLE `institution_type` DISABLE KEYS */;
 /*!40000 ALTER TABLE `institution_type` ENABLE KEYS */;
+UNLOCK TABLES;
 
+--
+-- Table structure for table `institutions`
+--
 
--- Dumping structure for table otb.regions
-CREATE TABLE IF NOT EXISTS `regions` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '0',
-  KEY `Index 1` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `institutions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `institutions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type_id` int(11) DEFAULT NULL,
+  `region_id` int(11) DEFAULT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `address` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_CB544664C54C8C93` (`type_id`),
+  KEY `IDX_CB54466498260155` (`region_id`),
+  CONSTRAINT `FK_CB54466498260155` FOREIGN KEY (`region_id`) REFERENCES `regions` (`id`),
+  CONSTRAINT `FK_CB544664C54C8C93` FOREIGN KEY (`type_id`) REFERENCES `institution_type` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- Dumping data for table otb.regions: ~0 rows (approximately)
+--
+-- Dumping data for table `institutions`
+--
+
+LOCK TABLES `institutions` WRITE;
+/*!40000 ALTER TABLE `institutions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `institutions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `regions`
+--
+
+DROP TABLE IF EXISTS `regions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `regions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `regions`
+--
+
+LOCK TABLES `regions` WRITE;
 /*!40000 ALTER TABLE `regions` DISABLE KEYS */;
 /*!40000 ALTER TABLE `regions` ENABLE KEYS */;
+UNLOCK TABLES;
 
+--
+-- Table structure for table `request_type`
+--
 
--- Dumping structure for table otb.request_type
-CREATE TABLE IF NOT EXISTS `request_type` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `type` varchar(255) NOT NULL,
-  KEY `Index 1` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `request_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `request_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- Dumping data for table otb.request_type: ~0 rows (approximately)
+--
+-- Dumping data for table `request_type`
+--
+
+LOCK TABLES `request_type` WRITE;
 /*!40000 ALTER TABLE `request_type` DISABLE KEYS */;
 /*!40000 ALTER TABLE `request_type` ENABLE KEYS */;
+UNLOCK TABLES;
 
+--
+-- Table structure for table `roles`
+--
 
--- Dumping structure for table otb.status
-CREATE TABLE IF NOT EXISTS `status` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `status` varchar(255) NOT NULL,
-  KEY `Index 1` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `roles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- Dumping data for table otb.status: ~0 rows (approximately)
+--
+-- Dumping data for table `roles`
+--
+
+LOCK TABLES `roles` WRITE;
+/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `status`
+--
+
+DROP TABLE IF EXISTS `status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `status` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `status`
+--
+
+LOCK TABLES `status` WRITE;
 /*!40000 ALTER TABLE `status` DISABLE KEYS */;
 /*!40000 ALTER TABLE `status` ENABLE KEYS */;
+UNLOCK TABLES;
 
+--
+-- Table structure for table `users`
+--
 
--- Dumping structure for table otb.wishlist
-CREATE TABLE IF NOT EXISTS `wishlist` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `end_date` datetime DEFAULT NULL,
-  `address_drop_of` text,
-  `instructions` text,
-  `visitation_time` datetime DEFAULT NULL,
-  `status_id` int(10) unsigned DEFAULT NULL,
-  `announce_text` text,
-  `institution_id` int(10) unsigned DEFAULT NULL,
-  `year` year(4) NOT NULL,
-  KEY `Index 1` (`id`),
-  KEY `FK_wishlist_status` (`status_id`),
-  KEY `FK_wishlist_institutions` (`institution_id`),
-  CONSTRAINT `FK_wishlist_institutions` FOREIGN KEY (`institution_id`) REFERENCES `institutions` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `FK_wishlist_status` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_id` int(11) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `company` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `oauth_client_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `oauth_client_secret` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `oauth_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_1483A5E9D60322AC` (`role_id`),
+  CONSTRAINT `FK_1483A5E9D60322AC` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- Dumping data for table otb.wishlist: ~0 rows (approximately)
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `wishlist`
+--
+
+DROP TABLE IF EXISTS `wishlist`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wishlist` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status_id` int(11) DEFAULT NULL,
+  `institution_id` int(11) DEFAULT NULL,
+  `end_date` datetime NOT NULL,
+  `address_drop_of` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `instructions` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `visitation_time` datetime NOT NULL,
+  `announce_text` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `year` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_9CE12A316BF700BD` (`status_id`),
+  KEY `IDX_9CE12A3110405986` (`institution_id`),
+  CONSTRAINT `FK_9CE12A3110405986` FOREIGN KEY (`institution_id`) REFERENCES `institutions` (`id`),
+  CONSTRAINT `FK_9CE12A316BF700BD` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `wishlist`
+--
+
+LOCK TABLES `wishlist` WRITE;
 /*!40000 ALTER TABLE `wishlist` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wishlist` ENABLE KEYS */;
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2016-10-22 19:08:24
