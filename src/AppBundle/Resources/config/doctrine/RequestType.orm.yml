@@ -1,6 +1,6 @@
-AppBundle\Entity\InstitutionType:
+AppBundle\Entity\RequestType:
     type: entity
-    table: institution_type
+    table: request_type
     id:
         id:
             type: integer

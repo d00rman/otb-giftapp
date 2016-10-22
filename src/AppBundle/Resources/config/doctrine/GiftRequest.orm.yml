@@ -1,0 +1,33 @@
+AppBundle\Entity\GiftRequest:
+    type: entity
+    table: gift_request
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        recipient_name:
+            type: string
+        recipient_age:
+            type: int
+        gift_name:
+            type: string
+        total_count:
+            type: int
+    manyToOne:
+        wishlist:
+            targetEntity: WishList
+            joinColumn:
+              name: wishlist_id
+              referencedColumnName: id
+        status:
+            targetEntity: Status
+            joinColumn:
+              name: status_id
+              referencedColumnName: id
+        type:
+            targetEntity: RequestType
+            joinColumn:
+              name: request_type_id
+              referencedColumnName: id
+

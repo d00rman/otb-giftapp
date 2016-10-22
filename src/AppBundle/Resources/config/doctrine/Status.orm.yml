@@ -1,12 +1,12 @@
-AppBundle\Entity\InstitutionType:
+AppBundle\Entity\Status:
     type: entity
-    table: institution_type
+    table: status
     id:
         id:
             type: integer
             generator: { strategy: AUTO }
     fields:
-        type:
+        status:
             type: string
             length: 100
 
