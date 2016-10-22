@@ -1,0 +1,21 @@
+AppBundle\Entity\Donation:
+    type: entity
+    table: donations
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        count:
+            type: int
+    manyToOne:
+        user:
+            targetEntity: User
+            joinColumn:
+              name: user_id
+              referencedColumnName: id
+        gift_request:
+            targetEntity: GiftRequest
+            joinColumn:
+              name: gift_request_id
+              referencedColumnName: id

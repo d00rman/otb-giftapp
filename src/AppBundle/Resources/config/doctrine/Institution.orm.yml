@@ -1,0 +1,26 @@
+AppBundle\Entity\Institution:
+    type: entity
+    table: institutions
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            length: 100
+        address:
+            type: string
+            length: 100
+    manyToOne:
+        type:
+          targetEntity: InstitutionType
+          joinColumn:
+            name: type_id
+            referencedColumnName: id
+        region:
+          targetEntity: Region
+          joinColumn:
+            name: region_id
+            referencedColumnName: id
+

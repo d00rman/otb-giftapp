@@ -1,0 +1,32 @@
+AppBundle\Entity\WishList:
+    type: entity
+    table: wishlist
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        end_date:
+            type: datetime
+        address_drop_of:
+            type: text
+        instructions:
+            type: text
+        visitation_time:
+            type: datetime
+        announce_text:
+            type: text
+        year:
+            type: int
+    manyToOne:
+        status:
+            targetEntity: Status
+            joinColumn:
+              name: status_id
+              referencedColumnName: id
+        institution:
+            targetEntity: Institution
+            joinColumn:
+              name: institution_id
+              referencedColumnName: id
+

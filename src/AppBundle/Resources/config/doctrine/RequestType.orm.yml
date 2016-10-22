@@ -1,0 +1,12 @@
+AppBundle\Entity\RequestType:
+    type: entity
+    table: request_type
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        type:
+            type: string
+            length: 100
+
