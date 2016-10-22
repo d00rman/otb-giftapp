@@ -95,7 +95,10 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+<<<<<<< HEAD
+=======
 # tmp files
 *~
 *.php~
 
+>>>>>>> f1139899d76a6c32afee92c2480ec5f002770849
