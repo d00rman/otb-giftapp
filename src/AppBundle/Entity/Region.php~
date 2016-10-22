@@ -1,0 +1,11 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+class Region
+{
+  private $id;
+  private $name;
+}
