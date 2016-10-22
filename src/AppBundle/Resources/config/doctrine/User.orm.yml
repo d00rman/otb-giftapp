@@ -1,0 +1,28 @@
+AppBundle\Entity\User:
+    type: entity
+    table: users
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+        email:
+            type: string
+        phone:
+            type: string
+        company:
+            type: string
+        oauth_client_id:
+            type: string
+        oauth_client_secret:
+            type: string
+        oauth_code:
+            type: string
+    manyToOne:
+        role:
+            targetEntity: Role
+            joinColumn:
+              name: role_id
+              referencedColumnName: id
