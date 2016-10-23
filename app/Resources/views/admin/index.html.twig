@@ -6,7 +6,7 @@
     <div class="page-header">
         <h1>Administration</h1>
     </div>
-    <a class="btn btn-info pull-right" href="admin/campaign-add.html">Add Campaign</a>
+    <a class="btn btn-info pull-right" href="{{ path('admin_campaign_add') }}">Add Campaign</a>
     {% if campaigns %}
     <div class="col-md-12">
         <table>
@@ -24,8 +24,8 @@
             <tr>
                 <td class="col-md-3">{{ campaign.getName() }}</td>
                 <td class="col-md-3">{{ campaign.getYear() }}</td>
-                <td class="col-md-2">{{ campaign.getStartDate() }}</a></td>
-                <td class="col-md-2">{{ campaign.getEndDate() }}</td>
+                <td class="col-md-2">{{ campaign.getStartDate()|date('d/m/Y') }}</a></td>
+                <td class="col-md-2">{{ campaign.getEndDate()|date('d/m/Y') }}</td>
                 <td class="col-md-2">
                     <a class="btn btn-danger btn-sm" href="/2016">Select</a>
                 </td>
