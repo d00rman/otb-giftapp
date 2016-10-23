@@ -65,11 +65,3 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-hwi_oauth:
-    # list of names of the firewalls in which this bundle is active, this setting MUST be set
-    firewall_names: [secured_area]
-    resource_owners:
-        any_name:
-            type:                facebook
-            client_id:           "%facebook_id%"
-            client_secret:       "%facebook_secret%"
