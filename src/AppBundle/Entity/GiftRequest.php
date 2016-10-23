@@ -86,7 +86,7 @@ class GiftRequest
      * @param \int $recipientAge
      * @return GiftRequest
      */
-    public function setRecipientAge(\int $recipientAge)
+    public function setRecipientAge($recipientAge)
     {
         $this->recipient_age = $recipientAge;
 
@@ -132,7 +132,7 @@ class GiftRequest
      * @param \int $totalCount
      * @return GiftRequest
      */
-    public function setTotalCount(\int $totalCount)
+    public function setTotalCount($totalCount)
     {
         $this->total_count = $totalCount;
 

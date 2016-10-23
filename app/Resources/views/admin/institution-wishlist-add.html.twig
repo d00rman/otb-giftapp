@@ -1,0 +1,59 @@
+{% extends 'admin.base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+<div class="row">
+    <div class="row">
+        <div class="page-header">
+            <h1>Institutions general - edit</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="institution-edit.html">General</a></li>
+                <li class="active"><a href="institution-wishlist.html">Wish list</a></li>
+                <li><a href="institution-needs-list.html">General needs</a></li>
+                <li><a href="institution-volunteer-list.html">Volunteer</a></li>
+            </ul>
+        </div>
+        <div class="col-md-10">
+            <form action="{{ path('admin_wishlist_add', {'id' : institution_id}) }}" method="post">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" placeholder="Name" id="name" name="name">
+                </div>
+
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="text" class="form-control" placeholder="Age" id="age" name="age">
+                </div>
+
+                <div class="form-group">
+                    <label for="gift">Gift</label>
+                    <input type="text" class="form-control" placeholder="Gift" id="gift" name="gift">
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" name="submit" id="submit" class="btn btn-primary" value="ADD">
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div> <!-- /container -->
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script>
+    $(document).ready(function () {
+        $('#confirm-delete').on('show.bs.modal', function (e) {
+            $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+        });
+    });
+</script>
+{% endblock %}
+

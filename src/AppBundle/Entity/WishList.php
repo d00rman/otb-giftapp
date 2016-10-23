@@ -155,7 +155,7 @@ class WishList
      * @param \int $year
      * @return WishList
      */
-    public function setYear(\int $year)
+    public function setYear($year)
     {
         $this->year = $year;
 
