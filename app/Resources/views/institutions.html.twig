@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="page-header">
+          <h1>Instituions
+            <small>Varna region</small>
+          </h1>
+        </div>
+        <table class="table table-responsive">
+          <thead>
+            <tr>
+              <th>Institution</th>
+              <th class="text-right">Kids</th>
+              <th class="text-right">Due date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="clickable-row css-table__row--danger" data-href="present_list.html">
+              <td>
+                Dapibus ac facilisis in Dapibus ac facilisis in Dapibus ac facilisis in
+                <div class="small">Varna</div>
+              </td>
+              <td class="text-right">
+                25
+              </td>
+              <td class="text-right">
+                12.12.2016
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}
