@@ -13,9 +13,14 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $regions = $this->getDoctrine()
+        ->getRepository('AppBundle:Region')
+        ->findAll();
+
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
+            'regions' => $regions
         ));
     }
 }
