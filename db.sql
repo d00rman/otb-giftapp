@@ -137,15 +137,13 @@ DROP TABLE IF EXISTS `institutions`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `institutions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type_id` int(11) DEFAULT NULL,
   `region_id` int(11) DEFAULT NULL,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `address` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `type` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `IDX_CB544664C54C8C93` (`type_id`),
   KEY `IDX_CB54466498260155` (`region_id`),
-  CONSTRAINT `FK_CB54466498260155` FOREIGN KEY (`region_id`) REFERENCES `regions` (`id`),
-  CONSTRAINT `FK_CB544664C54C8C93` FOREIGN KEY (`type_id`) REFERENCES `institution_type` (`id`)
+  CONSTRAINT `FK_CB54466498260155` FOREIGN KEY (`region_id`) REFERENCES `regions` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -329,4 +327,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-23  3:23:22
+-- Dump completed on 2016-10-23  9:36:32

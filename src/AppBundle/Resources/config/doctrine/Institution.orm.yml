@@ -12,12 +12,10 @@ AppBundle\Entity\Institution:
         address:
             type: string
             length: 100
-    manyToOne:
         type:
-          targetEntity: InstitutionType
-          joinColumn:
-            name: type_id
-            referencedColumnName: id
+            type: string
+            length: 50
+    manyToOne:
         region:
           targetEntity: Region
           joinColumn:
