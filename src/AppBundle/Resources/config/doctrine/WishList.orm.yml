@@ -6,8 +6,6 @@ AppBundle\Entity\WishList:
             type: integer
             generator: { strategy: AUTO }
     fields:
-        end_date:
-            type: datetime
         address_drop_of:
             type: text
         instructions:
@@ -22,11 +20,15 @@ AppBundle\Entity\WishList:
         status:
             targetEntity: Status
             joinColumn:
-              name: status_id
-              referencedColumnName: id
+                name: status_id
+                referencedColumnName: id
         institution:
             targetEntity: Institution
             joinColumn:
-              name: institution_id
-              referencedColumnName: id
-
+                name: institution_id
+                referencedColumnName: id
+        campaign:
+            targetEntity: Campaign
+            joinColumn:
+                name: campaign_id
+                referencedColumnName: id

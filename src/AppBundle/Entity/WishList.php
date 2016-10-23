@@ -12,11 +12,6 @@ class WishList
     private $id;
 
     /**
-     * @var \DateTime
-     */
-    private $end_date;
-
-    /**
      * @var string
      */
     private $address_drop_of;
@@ -60,29 +55,6 @@ class WishList
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set end_date
-     *
-     * @param \DateTime $endDate
-     * @return WishList
-     */
-    public function setEndDate($endDate)
-    {
-        $this->end_date = $endDate;
-
-        return $this;
-    }
-
-    /**
-     * Get end_date
-     *
-     * @return \DateTime 
-     */
-    public function getEndDate()
-    {
-        return $this->end_date;
     }
 
     /**
@@ -244,5 +216,33 @@ class WishList
     public function getInstitution()
     {
         return $this->institution;
+    }
+    /**
+     * @var \AppBundle\Entity\Campaign
+     */
+    private $campaign;
+
+
+    /**
+     * Set campaign
+     *
+     * @param \AppBundle\Entity\Campaign $campaign
+     * @return WishList
+     */
+    public function setCampaign(\AppBundle\Entity\Campaign $campaign = null)
+    {
+        $this->campaign = $campaign;
+
+        return $this;
+    }
+
+    /**
+     * Get campaign
+     *
+     * @return \AppBundle\Entity\Campaign 
+     */
+    public function getCampaign()
+    {
+        return $this->campaign;
     }
 }

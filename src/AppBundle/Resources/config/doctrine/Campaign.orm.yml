@@ -1,0 +1,17 @@
+AppBundle\Entity\Campaign:
+    type: entity
+    table: campaign
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+        start_date:
+            type: datetime
+        end_date:
+            type: datetime
+        year:
+            type: integer
