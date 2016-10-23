@@ -1,0 +1,51 @@
+{% extends 'admin.base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="page-header">
+        <h1>Institutions - list</h1>
+    </div>
+    <a class="btn btn-info pull-right" href="{{ path('admin_institution_add') }}">Add institution</a>
+    {% if institutions %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Region</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for institution in institutions %}
+        <tr>
+            <td class="col-md-6">{{ institution.getName() }}</td>
+            <td class="col-md-2">{{ institution.getRegion().getName() }}</td>
+            <td class="col-md-2"><a class="btn btn-info btn-sm" href="{{ path('admin_institution_edit', {'id': institution.getId()} ) }}">Edit</a></td>
+            <td class="col-md-2">
+                <a class="btn btn-danger btn-sm" data-href="institution-delete.html"
+                   data-toggle="modal" data-target="#confirm-delete">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    	<p>There are no added institutions.</p>
+    {% endif %}
+</div> <!-- /container -->
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script>
+    $(document).ready(function () {
+        $('#confirm-delete').on('show.bs.modal', function (e) {
+            $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+        });
+    });
+</script>
+{% endblock %}
+
