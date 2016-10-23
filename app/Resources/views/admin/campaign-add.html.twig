@@ -1,0 +1,61 @@
+{% extends 'admin.base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="page-header">
+            <h1>Campaign add</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form action="/admin/campaign-add" method="post">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" placeholder="Name" id="name" name="name">
+                </div>
+
+                <div class="form-group">
+                    <label for="year">Year</label>
+                    <input type="text" class="form-control" placeholder="Year" id="year" name="year">
+                </div>
+
+                <div class="form-group">
+                    <label for="start-date">Start date</label>
+                    <input type="text" class="form-control datetime-picker" placeholder="Start date" id="start_date" name="start_date">
+                </div>
+
+                <div class="form-group">
+                    <label for="end_date">End date</label>
+                    <input type="text" class="form-control datetime-picker" placeholder="End date" id="end_date" name="end_date">
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" name="submit" id="submit" class="btn btn-primary" value="ADD">
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div> <!-- /container -->
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script>
+    $(document).ready(function () {
+        $('#confirm-delete').on('show.bs.modal', function (e) {
+            $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+        });
+
+        $(function () {
+            $('.datetime-picker').datetimepicker({
+                format: 'DD/MM/YYYY'
+            });
+        });
+    });
+</script>
+{% endblock %}
+
