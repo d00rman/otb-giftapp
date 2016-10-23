@@ -9,13 +9,8 @@ class Institution
   private $id;
   private $name;
   private $address;
-  private $type_id;
+  private $type;
   private $region_id;
-
-    /**
-     * @var \AppBundle\Entity\InstitutionType
-     */
-    private $type;
 
     /**
      * @var \AppBundle\Entity\Region
@@ -82,10 +77,10 @@ class Institution
     /**
      * Set type
      *
-     * @param \AppBundle\Entity\InstitutionType $type
+     * @param string $type
      * @return Institution
      */
-    public function setType(\AppBundle\Entity\InstitutionType $type = null)
+    public function setType($type)
     {
         $this->type = $type;
 
@@ -95,7 +90,7 @@ class Institution
     /**
      * Get type
      *
-     * @return \AppBundle\Entity\InstitutionType 
+     * @return string 
      */
     public function getType()
     {
