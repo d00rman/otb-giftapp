@@ -1,9 +1,10 @@
 # This file is auto-generated during the composer install
 parameters:
-    database_host: 127.0.0.1
+    database_host: 88.80.184.120
     database_port: null
     database_name: otb
-    database_user: root
+    database_user: otb
+    database_password: gifts
     database_password: null
     mailer_transport: smtp
     mailer_host: 127.0.0.1
