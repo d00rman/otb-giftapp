@@ -1,0 +1,176 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="page-header page-header-danger page-header-success page-header-warning">
+        <h1>Instituion name
+          <small>Varna region</small>
+        </h1>
+        <p><strong>Type:</strong> Instituition type</p>
+      </div>
+
+      <p class="institution__info">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas libero eu neque fringilla, at
+        ultricies nunc rhoncus. Vestibulum feugiat cursus consequat. Nullam quis rutrum mauris, pretium mattis turpis.
+        Etiam tincidunt vestibulum lorem vitae ultrices. Cras sed ante condimentum, suscipit massa non, eleifend neque.
+        Sed ut condimentum ex, sed pharetra massa. Donec et diam odio. Vivamus dictum in magna sed vehicula. Mauris a
+        elit et libero hendrerit laoreet. Nunc vitae arcu eros.
+      </p>
+
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active">
+          <a href="#gift" aria-controls="gift" role="tab" data-toggle="tab">Gifts</a>
+        </li>
+        <li role="presentation">
+          <a href="#general" aria-controls="general" role="tab" data-toggle="tab">General</a>
+        </li>
+        <li role="presentation">
+          <a href="#volunteering" aria-controls="volunteering" role="tab" data-toggle="tab">Volunteering</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="gift">
+          <table class="table table-responsive">
+            <thead>
+              <tr>
+                <th>Child</th>
+                <th>Gift</th>
+                <th class="text-right"></th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <tr class="css-table__row--success">
+                <td>
+                  Peter
+                  <div class="small">12</div>
+                </td>
+                <td>
+                  <p>Lorem ipsum dolor sit amet</p>
+                  <p>Praesent egestas libero eu neque fringilla</p>
+                  <p>Cras sed ante condimentum</p>
+                </td>
+                <td class="text-right">
+                  <p>
+                    <button type="button" class="btn btn-xs btn-danger">Donate</button>
+                  </p>
+                  <p>
+                    <button type="button" class="btn btn-xs btn-danger">Donate</button>
+                  </p>
+                  <p><span class="label label-success">Jon Snow</span></p>
+                </td>
+              </tr>
+              <tr class="css-table__row--warning">
+                <td>
+                  Peter
+                  <div class="small">12</div>
+                </td>
+                <td>
+                  <p>Lorem ipsum dolor sit amet</p>
+                  <p>Praesent egestas libero eu neque fringilla</p>
+                  <p>Cras sed ante condimentum</p>
+                </td>
+                <td class="text-right">
+                  <p>
+                    <button type="button" class="btn btn-xs btn-danger">Donate</button>
+                  </p>
+                  <p>
+                    <button type="button" class="btn btn-xs btn-danger">Donate</button>
+                  </p>
+                  <p><span class="label label-success">Jon Snow</span></p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="general">
+          <table class="table table-responsive">
+            <thead>
+              <tr>
+                <th>Need</th>
+                <th class="text-right">Donate</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr class="css-table__row--neutral">
+                <td>
+                  Lorem ipsum dolor sit amet
+                </td>
+                <td class="text-right">
+                  <p>
+                    <button type="button" class="btn btn-xs btn-danger">Donate</button>
+                  </p>
+                </td>
+              </tr>
+              <tr class="css-table__row--neutral">
+                <td>
+                  Lorem ipsum dolor sit amet <span class="badge">42</span> <br>
+                  <small>37 left</small>
+                </td>
+                <td class="text-right">
+                  <p><span class="label label-success">Jon Snow</span> <span class="badge">5</span></p>
+                  <p>
+                      <button type="button" class="btn btn-xs btn-danger">Donate</button>
+                  </p>
+                </td>
+              </tr>
+              <tr class="css-table__row--neutral">
+                <td>
+                  Lorem ipsum dolor sit amet <span class="badge">42</span>
+                </td>
+                <td class="text-right">
+                  <p><span class="label label-success">Jon Snow</span> <span class="badge">42</span></p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="volunteering">
+          <table class="table table-responsive">
+            <thead>
+              <tr>
+                <th>Volunteer job</th>
+                <th class="text-right"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr class="css-table__row--neutral">
+                <td>
+                  Lorem ipsum dolor sit amet
+                </td>
+                <td class="text-right">
+                  <p>
+                    <button type="button" class="btn btn-xs btn-danger">Voluntee</button>
+                  </p>
+                </td>
+              </tr>
+              <tr class="css-table__row--neutral">
+                <td>
+                  Lorem ipsum dolor sit amet
+                </td>
+                <td class="text-right">
+                  <p><span class="label label-success">Jon Snow</span></p>
+                </td>
+              </tr>
+              <tr class="css-table__row--neutral">
+                <td>
+                  Lorem ipsum dolor sit amet
+                </td>
+                <td class="text-right">
+                  <p><span class="label label-success">Jon Snow</span></p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

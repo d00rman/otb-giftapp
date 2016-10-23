@@ -3,129 +3,95 @@
 {% block body %}
     
 <div class="container">
-
-    <div class="row hidden-xs hidden-sm">
-        <div class="col-lg-12">
-            <div class="page-header">
-                <h1>Please choose a region</h1>
-            </div>
-
-            <div id="map"></div>
-        </div>
+  <div class="row hidden-xs hidden-sm">
+    <div class="col-lg-12">
+      <div class="page-header">
+        <h1>Please choose a region</h1>
+      </div>
+      <div id="map"></div>
     </div>
+  </div>
 
-    <div class="row hidden-md hidden-lg">
-        <div class="col-lg-12">
-            <div class="page-header">
-                <h1>Please choose a region</h1>
-            </div>
-
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <span class="label label-danger pull-right">14</span>
-                    <a href="institutions.html">Благоевград</a>
-                </li>
-                <li class="list-group-item">
-                    <span class="label label-default pull-right">14</span>
-                    <a href="institutions.html">Благоевград</a>
-                </li>
-                <li class="list-group-item">
-                    <span class="label label-default pull-right">14</span>
-                    <a href="institutions.html">Благоевград</a>
-                </li>
-                <li class="list-group-item">
-                    <span class="label label-default pull-right">14</span>
-                    <a href="institutions.html">Благоевград</a>
-                </li>
-                <li class="list-group-item">
-                    <span class="label label-success pull-right">14</span>
-                    <a href="institutions.html">Благоевград</a>
-                </li>
-                <li class="list-group-item">
-                    <span class="label label-success pull-right">14</span>
-                    <a href="institutions.html">Благоевград</a>
-                </li>
-                <li class="list-group-item">
-                    <span class="label label-success pull-right">14</span>
-                    <a href="institutions.html">Благоевград</a>
-                </li>
-                <li class="list-group-item">
-                    <span class="label label-success pull-right">14</span>
-                    <a href="institutions.html">Благоевград</a>
-                </li>
-            </ul>
-
-        </div>
+  <div class="row hidden-md hidden-lg">
+    <div class="col-xs-12">
+      <div class="page-header">
+        <h2>Please choose a region</h2>
+     </div>
+      <ul class="list-group">
+        {% for region in regions %}
+          <li class="list-group-item col-xs-12">
+            <a href="/region/{{region.id}}" class="align-center">{{region.name}}</a>
+          </li>
+        {% endfor %}
+      </ul>
     </div>
-
+  </div>
 </div> <!-- /container -->
-
-{% endblock %}
-
-{% block javascripts %}
 <script>
-$(window).load(function () {
+  $(window).load(function () {
     if ($(window).width() >= 992) {
-        var map = AmCharts.makeChart("map", {
-            "type": "map",
-            "theme": "light",
-            "dragMap": false,
-            "projection": "eckert3",
-            "creditsPosition": "bottom-right",
-            "dataProvider": {
-                "mapURL": "{{ asset('assets/bower_components/ammap3/ammap/maps/svg/bulgariaHigh.svg') }}",
-                "getAreasFromMap": true,
-                "areas": [
-                    {% for region in regions %}
-                        {"id": "{{ region.getSvgId() }}", "title": "{{ region.getName() }}", 'url': '/region/{{ region.getId() }}'},
-                    {% endfor %}
-                ]
-            },
-            "imagesSettings": {
-                "labelPosition": "middle",
-                "labelFontSize": 12,
-                "labelColor": '#111'
-            },
-            "areasSettings": {
-                "autoZoom": false,
-                "color": "#52bc92",
-                "selectedColor": "#52bc92",
-                "rollOverColor": "#40a67e",
-                "selectable": true
-            },
-            "listeners": [{
-                "event": "clickMapObject",
-                "method": function (e) {
-                    if (e.mapObject.objectType !== "MapArea") {
-                        return;
-                    }
+      var map = AmCharts.makeChart("map", {
+        "type": "map",
+        "theme": "light",
+        "dragMap": false,
+        "projection": "eckert3",
+        "creditsPosition": "bottom-right",
+        "dataProvider": {
+          "mapURL": "{{ asset('assets/bower_components/ammap3/ammap/maps/svg/bulgariaHigh.svg') }}",
+          "getAreasFromMap": true,
+          "areas": [
+            {% for region in regions %}
+              {"id": "{{ region.getSvgId() }}", "title": "{{ region.getName() }}", 'url': '/region/{{ region.getId() }}'},
+            {% endfor %}
+          ]
+        },
+        "imagesSettings": {
+          "labelPosition": "middle",
+          "labelFontSize": 12,
+          "labelColor": '#111'
+        },
+        "areasSettings": {
+          "autoZoom": false,
+          "color": "#52bc92",
+          "selectedColor": "#52bc92",
+          "rollOverColor": "#40a67e",
+          "selectable": true
+        },
+        "listeners": [{
+          "event": "clickMapObject",
+          "method": function (e) {
+            if (e.mapObject.objectType !== "MapArea") {
+              return;
+            }
 
-                    var area = e.mapObject;
+            var area = e.mapObject;
 
-                    console.log(area.url);
-                }
-            }]
-        });
+            console.log(area.url);
+          }
+        }]
+      });
 
-        map.addListener("init", function () {
-            setTimeout(function () {
-                // iterate through areas and put a label over center of each
-                map.dataProvider.images = [];
-                for (x in map.dataProvider.areas) {
-                    var area = map.dataProvider.areas[x];
-                    var image = new AmCharts.MapImage();
-                    image.latitude = map.getAreaCenterLatitude(area);
-                    image.longitude = map.getAreaCenterLongitude(area);
-                    image.label = area.title;
-                    image.title = area.title;
-                    image.linkToObject = area;
-                    map.dataProvider.images.push(image);
-                }
-                map.validateData();
-                console.log(map.dataProvider);
-            }, 100)
-        });
+      map.addListener("init", function () {
+        setTimeout(function () {
+          // iterate through areas and put a label over center of each
+          map.dataProvider.images = [];
+          for (x in map.dataProvider.areas) {
+            var area = map.dataProvider.areas[x];
+            var image = new AmCharts.MapImage();
+            image.latitude = map.getAreaCenterLatitude(area);
+            image.longitude = map.getAreaCenterLongitude(area);
+            image.label = area.title;
+            image.title = area.title;
+            image.linkToObject = area;
+            map.dataProvider.images.push(image);
+          }
+          map.validateData();
+          console.log(map.dataProvider);
+        }, 100)
+      });
     }
-});
+  });
 </script>
 {% endblock %}
+
+
