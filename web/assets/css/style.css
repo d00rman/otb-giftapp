@@ -1,0 +1,24 @@
+.colors div {
+    min-height: 100px;
+    display: flex;
+}
+
+.colors div:first-child {
+    background: #002751;
+}
+
+.colors div:nth-child(2) {
+    background: #52bc92;
+}
+
+.colors div:nth-child(3) {
+    background: #ff7d30;
+}
+
+.colors div:nth-child(4) {
+    background: #f22727;
+}
+
+.colors div:last-child {
+    background: #dcdae1;
+}
