@@ -9,3 +9,6 @@ AppBundle\Entity\Region:
         name:
             type: string
             length: 100
+        svg_id:
+            type: string
+            length: 5

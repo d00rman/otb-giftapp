@@ -41,4 +41,32 @@ class Region
   {
     return $this->name;
   }
+    /**
+     * @var string
+     */
+    private $svg_id;
+
+
+    /**
+     * Set svg_id
+     *
+     * @param string $svgId
+     * @return Region
+     */
+    public function setSvgId($svgId)
+    {
+        $this->svg_id = $svgId;
+
+        return $this;
+    }
+
+    /**
+     * Get svg_id
+     *
+     * @return string 
+     */
+    public function getSvgId()
+    {
+        return $this->svg_id;
+    }
 }
