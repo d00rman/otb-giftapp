@@ -16,6 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `campaign`
+--
+
+DROP TABLE IF EXISTS `campaign`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `campaign` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `start_date` datetime NOT NULL,
+  `end_date` datetime NOT NULL,
+  `year` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `campaign`
+--
+
+LOCK TABLES `campaign` WRITE;
+/*!40000 ALTER TABLE `campaign` DISABLE KEYS */;
+/*!40000 ALTER TABLE `campaign` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `donations`
 --
 
@@ -142,8 +168,9 @@ DROP TABLE IF EXISTS `regions`;
 CREATE TABLE `regions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `svg_id` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152,6 +179,7 @@ CREATE TABLE `regions` (
 
 LOCK TABLES `regions` WRITE;
 /*!40000 ALTER TABLE `regions` DISABLE KEYS */;
+INSERT INTO `regions` VALUES (1,'Благоевград','BG-01'),(2,'Бургас','BG-02'),(3,'Варна','BG-03'),(4,'Велико Търново','BG-04'),(5,'Видин','BG-05'),(6,'Враца','BG-06'),(7,'Габрово','BG-07'),(8,'Добрич','BG-08'),(9,'Кърджали','BG-09'),(10,'Кюстендил','BG-10'),(11,'Ловеч','BG-11'),(12,'Монтана','BG-12'),(13,'Пазарджик','BG-13'),(14,'Перник','BG-14'),(15,'Плевен','BG-15'),(16,'Пловдив','BG-16'),(17,'Разград','BG-17'),(18,'Русе','BG-18'),(19,'Силистра','BG-19'),(20,'Сливен','BG-20'),(21,'Смолян','BG-21'),(22,'София','BG-22'),(23,'София-град','BG-23'),(24,'Стара Загора','BG-24'),(25,'Търговище','BG-25'),(26,'Хасково','BG-26'),(27,'Шумен','BG-27'),(28,'Ямбол','BG-28');
 /*!40000 ALTER TABLE `regions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,7 +295,7 @@ CREATE TABLE `wishlist` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status_id` int(11) DEFAULT NULL,
   `institution_id` int(11) DEFAULT NULL,
-  `end_date` datetime NOT NULL,
+  `campaign_id` int(11) DEFAULT NULL,
   `address_drop_of` longtext COLLATE utf8_unicode_ci NOT NULL,
   `instructions` longtext COLLATE utf8_unicode_ci NOT NULL,
   `visitation_time` datetime NOT NULL,
@@ -276,8 +304,10 @@ CREATE TABLE `wishlist` (
   PRIMARY KEY (`id`),
   KEY `IDX_9CE12A316BF700BD` (`status_id`),
   KEY `IDX_9CE12A3110405986` (`institution_id`),
+  KEY `IDX_9CE12A31F639F774` (`campaign_id`),
   CONSTRAINT `FK_9CE12A3110405986` FOREIGN KEY (`institution_id`) REFERENCES `institutions` (`id`),
-  CONSTRAINT `FK_9CE12A316BF700BD` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`)
+  CONSTRAINT `FK_9CE12A316BF700BD` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`),
+  CONSTRAINT `FK_9CE12A31F639F774` FOREIGN KEY (`campaign_id`) REFERENCES `campaign` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -299,4 +329,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-22 19:08:24
+-- Dump completed on 2016-10-23  3:23:22
