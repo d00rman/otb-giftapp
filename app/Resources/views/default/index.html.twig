@@ -77,7 +77,7 @@ $(window).load(function () {
                 "getAreasFromMap": true,
                 "areas": [
                     {% for region in regions %}
-                        {"id": "{{ region.getSvgId() }}", "title": "{{ region.getName() }}", 'url': '/{{ region.getId() }}'},
+                        {"id": "{{ region.getSvgId() }}", "title": "{{ region.getName() }}", 'url': '/region/{{ region.getId() }}'},
                     {% endfor %}
                 ]
             },
